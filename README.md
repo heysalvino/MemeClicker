@@ -1,6 +1,6 @@
 # Meme Clicker Game
 
-A web application where users can click memes to death. # Meme Clicker Web Application
+A web application where users can click memes to death.
 
 Welcome to the Meme Clicker web application! This fun and simple game allows you to click on memes to score points. Challenge your friends, compete for the highest score, and enjoy a casual gaming experience. This README will provide you with the information you need to set up and play the game.
 
