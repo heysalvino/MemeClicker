@@ -1,0 +1,22 @@
+{
+  "name": "meme_clicker_game",
+  "version": "1.0.0",
+  "description": "A web application where users can click memes to death.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pBsmith/meme_clicker_game.git"
+  },
+  "author": "Parker B. Smith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pBsmith/meme_clicker_game/issues"
+  },
+  "homepage": "https://github.com/pBsmith/meme_clicker_game#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
