@@ -1,184 +1,176 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        .jumbotron {
+            background-color: #17ABF6;
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+        }
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        
-        <style>
-            
-            .image {
-                height: 450px;
-                width: 100%;
-            }
+        .image {
+            height: 450px;
+            width: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
 
-            .sep {
-                border-style: solid;
-                border-color: black;
-                border-width: 5px;
-            }
+        .image:hover {
+            transform: scale(1.05);
+        }
 
-            .bold-text {
-                text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
-            }
-            
-            #progress {
-                color: green;
-                width: 100%;
-            }
-            
-        </style>
+        .sep {
+            border: 5px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+        }
 
-    </head>
+        .bold-text {
+            text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black,
+                1px -1px 0 black, -1px 1px 0 black;
+        }
 
-    <body>
+        #progress {
+            color: green;
+            width: 100%;
+        }
 
-        <!-- Jumbotron Header -->
-        <div class="jumbotron jumbotron-fluid" style="background-color: #17ABF6;">
-            <div class="container">
-                <h1 class="display-3 bold-text" style="font-family: Impact; color: white">
-                    Meme Clicker Game
-                </h1>
-                <h4 class="mt-3">
-                    Click away to kill the memes! Level up, collect coins, then buy helpers to aid
-                    in your meme killing quest!
-                </h4>
-            </div>
-        </div>
+        .stats {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
 
-        <!-- This row contains meme image and Player Stats -->
+        .helper-btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Jumbotron Header -->
+    <div class="jumbotron">
         <div class="container">
-            <div class="row">
-                
-                <!-- Left pane has two rows, one for meme image and one for meme health -->
-                <div class="col-md-6">
-                    
-                    <!-- Section where meme appears -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            
-                            <div class="sep">
-                                <img class="image" src="images/meme_1.jpg" onclick="attack()" name="randImage">
-                            </div>
-                            
-                        </div>
-                    </div>
-                    
-                    <!-- Section where health bar appears -->
-                    <div class="row mt-3 mb-3">
-                        
-                        <div class="col-md-4">
-                
-                            <p>Meme health: <b><span id="memes_health">5</span></b></p>
-
-                        </div>
-                        
-                        <div class="col-md-8">
-    
-                            <progress class="progress" id="health" value="5" max="5"></progress>
-                            
-                        </div>
-
-                    </div>
-                
-                </div> <!-- /col-md-6 -->
-
-                <div class="col-md-6 sep">
-
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <h3>Kill 5 memes to level up!</h3>
-                            <hr>
-                        </div>
-                    </div>
-                    
-                    <!-- Display player level -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>You are a level <b><span id="level">0</span></b> meme killer.</p>
-                        </div>
-                    </div>
-
-                    <!-- Display clicker attack stats -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>Clicker Attack: <b><span id="attack_number">1</span></b></p>
-                        </div>
-                    </div>
-                    
-                    <!-- Display player kill stats -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>You have killed <b><span id="memes_killed">0</span></b> memes!</p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>You have <b><span id="coins">0</span></b> coins.</p>
-                        </div>
-                    </div>
-
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <h3>Meme Killer Helpers</h3>
-                            <hr>
-                        </div>
-                    </div>
-
-                    <!-- Beginner Meme Killer Helper -->
-                    <div class="row mt-3">
-                        <div class="col-md-8">
-                            <p><b>Beginner</b> Meme Killer Helper: <b>25</b> coins</p>
-                        </div>
-
-                        <div class="col-md-4">
-                            <button type="button" class="btn btn-primary btn-block" id="beginnerHelper">Buy</button>
-                        </div>
-                    </div>
-
-                    <!-- Intermediate Meme Killer Helper -->
-                    <div class="row mt-3">
-                        <div class="col-md-8">
-                            <p><b>Intermediate</b> Meme Killer Helper: <b>50</b> coins</p>
-                        </div>
-    
-                        <div class="col-md-4">
-                            <button type="button" class="btn btn-primary btn-block" id="intermediateHelper">Buy</button>
-                        </div>
-                    </div>
-
-                    <!-- Expert Meme Killer Helper -->
-                    <div class="row mt-3">
-                        <div class="col-md-8">
-                            <p><b>Expert</b> Meme Killer Helper: <b>100</b> coins</p>
-                        </div>
-        
-                        <div class="col-md-4">
-                            <button type="button" class="btn btn-primary btn-block" id="expertHelper">Buy</button>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
+            <h1 class="display-4 bold-text">
+                Meme Clicker Game
+            </h1>
+            <p class="lead">
+                Click away to kill the memes! Level up, collect coins, then buy helpers to aid in your meme killing
+                quest!
+            </p>
         </div>
+    </div>
 
-        </br>
-
-    </body>
+    <!-- This row contains meme image and Player Stats -->
+    <div class="container">
+        <div class="row">
+            <!-- Left pane has two rows, one for meme image and one for meme health -->
+            <div class="col-md-6">
+                <!-- Section where meme appears -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="sep">
+                            <img class="image" src="images/meme_1.jpg" onclick="attack()" name="randImage">
+                        </div>
+                    </div>
+                </div>
+                <!-- Section where health bar appears -->
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-4 stats">
+                        <p>Meme health: <b><span id="memes_health">5</span></b></p>
+                    </div>
+                    <div class="col-md-8">
+                        <progress class="progress" id="health" value="5" max="5"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 sep">
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <h3>Kill 5 memes to level up!</h3>
+                        <hr>
+                    </div>
+                </div>
+                <!-- Display player level -->
+                <div class="row">
+                    <div class="col-md-12 stats">
+                        <p>You are a level <b><span id="level">0</span></b> meme killer.</p>
+                    </div>
+                </div>
+                <!-- Display clicker attack stats -->
+                <div class="row">
+                    <div class="col-md-12 stats">
+                        <p>Clicker Attack: <b><span id="attack_number">1</span></b></p>
+                    </div>
+                </div>
+                <!-- Display player kill stats -->
+                <div class="row">
+                    <div class="col-md-12 stats">
+                        <p>You have killed <b><span id="memes_killed">0</span></b> memes!</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 stats">
+                        <p>You have <b><span id="coins">0</span></b> coins.</p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <h3>Meme Killer Helpers</h3>
+                        <hr>
+                    </div>
+                </div>
+                <!-- Beginner Meme Killer Helper -->
+                <div class="row mt-3">
+                    <div class="col-md-8 stats">
+                        <p><b>Beginner</b> Meme Killer Helper: <b>25</b> coins</p>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-primary btn-block helper-btn" id="beginnerHelper">Buy</button>
+                    </div>
+                </div>
+                <!-- Intermediate Meme Killer Helper -->
+                <div class="row mt-3">
+                    <div class="col-md-8 stats">
+                        <p><b>Intermediate</b> Meme Killer Helper: <b>50</b> coins</p>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-primary btn-block helper-btn"
+                            id="intermediateHelper">Buy</button>
+                    </div>
+                </div>
+                <!-- Expert Meme Killer Helper -->
+                <div class="row mt-3">
+                    <div class="col-md-8 stats">
+                        <p><b>Expert</b> Meme Killer Helper: <b>100</b> coins</p>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-primary btn-block helper-btn" id="expertHelper">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
-        
         // Meme health and health bar
         var health = document.getElementById("health");
         var memesHealth = 5;
-        
+
         // Player Stats
         var memesKilled = 0;
         var level = 0;
@@ -191,49 +183,25 @@
         var expertHelper = 4;
 
         // Meme Images    
-        var memeImages = new Array();
-        memeImages.push("images/meme_1.jpg");
-        memeImages.push("images/meme_2.png");
-        memeImages.push("images/meme_3.png");
-        memeImages.push("images/meme_4.png");
-        memeImages.push("images/meme_5.png");
-        memeImages.push("images/meme_6.png");
-        memeImages.push("images/meme_7.png");
-        memeImages.push("images/meme_8.png");
-        memeImages.push("images/meme_9.png");
-        memeImages.push("images/meme_10.png");
-        memeImages.push("images/meme_11.png");
-        memeImages.push("images/meme_12.png");
-        memeImages.push("images/meme_13.png");
-        memeImages.push("images/meme_14.png");
-        memeImages.push("images/meme_15.png");
-        memeImages.push("images/meme_16.png");
-        memeImages.push("images/meme_17.png");
-        memeImages.push("images/meme_18.png");
-        memeImages.push("images/meme_19.png");
-        memeImages.push("images/meme_20.png");
-        memeImages.push("images/meme_21.png");
-        memeImages.push("images/meme_22.png");
-        memeImages.push("images/meme_23.png");
-        memeImages.push("images/meme_24.png");
-        memeImages.push("images/meme_25.png");
-        memeImages.push("images/meme_26.png");
-        memeImages.push("images/meme_27.png");
-        memeImages.push("images/meme_28.png");
-        memeImages.push("images/meme_29.png");
-        memeImages.push("images/meme_30.png");
-        memeImages.push("images/meme_31.png");
-        memeImages.push("images/meme_32.png");
-        
+        var memeImages = [
+            "images/meme_1.jpg", "images/meme_2.png", "images/meme_3.png", "images/meme_4.png", "images/meme_5.png",
+            "images/meme_6.png", "images/meme_7.png", "images/meme_8.png", "images/meme_9.png", "images/meme_10.png",
+            "images/meme_11.png", "images/meme_12.png", "images/meme_13.png", "images/meme_14.png", "images/meme_15.png",
+            "images/meme_16.png", "images/meme_17.png", "images/meme_18.png", "images/meme_19.png", "images/meme_20.png",
+            "images/meme_21.png", "images/meme_22.png", "images/meme_23.png", "images/meme_24.png", "images/meme_25.png",
+            "images/meme_26.png", "images/meme_27.png", "images/meme_28.png", "images/meme_29.png", "images/meme_30.png",
+            "images/meme_31.png", "images/meme_32.png"
+        ];
+
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-        
+
         // Generate random meme
         function randMemeImage() {
             document.randImage.src = memeImages[getRandomInt(0, memeImages.length - 1)];
         }
-        
+
         // Level up and update meme's health 
         function levelUp(memesKilled) {
             if (memesKilled % 5 == 0) {
@@ -247,9 +215,9 @@
         }
 
         // on attck() decrement meme's health and update player stats
-        function attack() {    
+        function attack() {
             health.value = health.value - attackNumber;
-                
+
             if (health.value == 0) {
                 memesKilled = memesKilled + 1;
                 coins = coins + 1;
@@ -259,11 +227,10 @@
                 randMemeImage();
                 health.value = memesHealth;
             }
-    
         }
-        
+
         // Buy beginner meme helper and update player stats
-        document.getElementById("beginnerHelper").onclick = function() {
+        document.getElementById("beginnerHelper").onclick = function () {
             if (coins >= 25) {
                 attackNumber = attackNumber + beginnerHelper;
                 coins = coins - 25;
@@ -276,7 +243,7 @@
         };
 
         // Buy intermediate meme helper and update player stats
-        document.getElementById("intermediateHelper").onclick = function() {
+        document.getElementById("intermediateHelper").onclick = function () {
             if (coins >= 50) {
                 attackNumber = attackNumber + intermediateHelper;
                 coins = coins - 50;
@@ -289,7 +256,7 @@
         };
 
         // Buy expert meme helper and update player stats
-        document.getElementById("expertHelper").onclick = function() {
+        document.getElementById("expertHelper").onclick = function () {
             if (coins >= 100) {
                 attackNumber = attackNumber + expertHelper;
                 coins = coins - 100;
@@ -300,7 +267,8 @@
                 alert("You don't have enough coins!")
             }
         };
-    
     </script>
+
+</body>
 
 </html>
